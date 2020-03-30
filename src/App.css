@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -35,4 +35,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.location {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  color: red;
+}
+
+.wrapper {
+  padding: 50px;
 }

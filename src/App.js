@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+
+import Location from './Location';
+
+import { getLocations } from './API/getLocations';
+
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+
+class BerlinLocations extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      locations: null
+    }
+  }
+
+  componentDidMount() {
+    getLocations().then(data => {
+      const berlinData = data.filter(loc => {
+        return loc.AddressInfo.Town === "Berlin"
+      })
+      console.log(berlinData);
+      this.setState({locations: berlinData})
+    })
+  }
+
+  render() {
+    const { locations } = this.state;
+    return (
+      <div className="wrapper">
+      <div id="map">
+        <Map
+          google={this.props.google}
+          zoom={8}
+          // style={mapStyles}
+          initialCenter={{ lat: 52.5200, lng: 13.4050}}
+
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        {locations && locations.map(location => (
+        <Location key={location.ID} lat={location.AddressInfo.Latitude} lng={location.AddressInfo.Longitude}/>
+
+        ))}
+          </Map>
+      </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyAr38yriJlZDsY_AUErEsiOQuhV34udfGQ'
+})(BerlinLocations);
+
+
