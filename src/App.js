@@ -38,7 +38,7 @@ class BerlinLocations extends Component {
 
         >
         {locations && locations.map(location => (
-        <Marker position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
+        <Marker key={location.ID} position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
 
         ))}
           </Map>
