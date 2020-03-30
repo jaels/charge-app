@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import Location from './Location';
-
 import { getLocations } from './API/getLocations';
 
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
@@ -25,7 +23,6 @@ class BerlinLocations extends Component {
       const berlinData = data.filter(loc => {
         return loc.AddressInfo.Town === "Berlin"
       })
-      console.log(berlinData);
       this.setState({locations: berlinData})
     })
   }
@@ -41,7 +38,6 @@ class BerlinLocations extends Component {
 
         >
         {locations && locations.map(location => (
-        // <Location key={location.ID} lat={location.AddressInfo.Latitude} lng={location.AddressInfo.Longitude}/>
         <Marker position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
 
         ))}
