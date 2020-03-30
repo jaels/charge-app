@@ -35,11 +35,9 @@ class BerlinLocations extends Component {
           google={this.props.google}
           zoom={8}
           initialCenter={{ lat: 52.5200, lng: 13.4050}}
-
         >
         {locations && locations.map(location => (
-        <Marker key={location.ID} position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
-
+          <Marker key={location.ID} position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
         ))}
           </Map>
       </div>
