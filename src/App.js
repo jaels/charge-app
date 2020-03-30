@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import Location from './Location';
+// import Location from './Location';
 
 import { getLocations } from './API/getLocations';
 
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
 import './App.css';
@@ -33,21 +33,19 @@ class BerlinLocations extends Component {
   render() {
     const { locations } = this.state;
     return (
-      <div className="wrapper">
       <div id="map">
         <Map
           google={this.props.google}
           zoom={8}
-          // style={mapStyles}
           initialCenter={{ lat: 52.5200, lng: 13.4050}}
 
         >
         {locations && locations.map(location => (
-        <Location key={location.ID} lat={location.AddressInfo.Latitude} lng={location.AddressInfo.Longitude}/>
+        // <Location key={location.ID} lat={location.AddressInfo.Latitude} lng={location.AddressInfo.Longitude}/>
+        <Marker position={{ lat: location.AddressInfo.Latitude, lng: location.AddressInfo.Longitude }} />
 
         ))}
           </Map>
-      </div>
       </div>
     );
   }
